@@ -1,0 +1,8 @@
+SELECT TOP 1
+    p.category, 
+    r.return_reason, 
+    COUNT(*) AS so_luong
+FROM datathon.dbo.returns r
+JOIN datathon.dbo.products p ON p.product_id = r.product_id
+GROUP BY p.category, r.return_reason
+ORDER BY so_luong DESC;

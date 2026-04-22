@@ -1,0 +1,5 @@
+select top 1 traffic_source,
+avg(bounce_rate) as out_rate
+from datathon.dbo.web_traffic wt
+group by traffic_source
+ORDER by out_rate asc

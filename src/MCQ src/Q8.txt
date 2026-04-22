@@ -1,0 +1,4 @@
+select payment_method from datathon.dbo.orders o 
+where order_status = 'cancelled'
+group by payment_method
+order by count(order_status) desc

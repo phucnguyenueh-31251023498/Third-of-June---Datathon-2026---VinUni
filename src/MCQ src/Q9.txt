@@ -1,0 +1,9 @@
+SELECT 
+    p.size, 
+    COUNT(r.order_id) * 1.0 / COUNT(oi.order_id) AS return_rate
+FROM datathon.dbo.products p
+JOIN datathon.dbo.order_items oi ON p.product_id = oi.product_id
+LEFT JOIN datathon.dbo.returns r ON oi.order_id = r.order_id 
+    AND oi.product_id = r.product_id
+GROUP BY p.size
+ORDER BY return_rate DESC;

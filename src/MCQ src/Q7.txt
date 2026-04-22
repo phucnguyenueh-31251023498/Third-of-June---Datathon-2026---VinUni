@@ -1,0 +1,7 @@
+select g.region, sum(oi.unit_price + oi.unit_price )  as revenue from datathon.dbo.orders o
+join datathon.dbo.customers c on c.customer_id = o.customer_id 
+join datathon.dbo.geography g on g.zip = c.zip 
+join datathon.dbo.order_items oi on o.order_id = oi.order_id
+and g.zip = o.zip
+group by g.region 
+order by revenue desc

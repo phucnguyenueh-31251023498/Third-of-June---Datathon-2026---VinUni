@@ -1,0 +1,6 @@
+SELECT TOP 1 
+    segment, 
+    AVG((price - cogs) / price) AS avg_tsln
+FROM datathon.dbo.products
+GROUP BY segment
+ORDER BY avg_tsln DESC
