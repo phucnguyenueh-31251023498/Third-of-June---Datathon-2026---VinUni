@@ -36,8 +36,22 @@ def load_all_data(folder_path, schema):
             
     return all_data
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-data_folder = os.path.join(script_dir, '..', 'data')
+if __name__ == '__main__':
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    data_folder = os.path.join(script_dir, '..', 'data')
     
-data_dict = load_all_data(data_folder, date_map)
+    # Load
+    data_dict = load_all_data(data_folder, date_map)
+    
+    # Perform the split for the Datathon requirements
+    df_sales = data_dict['sales']
+    train_df = df_sales[df_sales['Date'] < '2022-01-01']
+    test_df = df_sales[df_sales['Date'] >= '2022-01-01']
+    
+    # Save the files
+    train_df.to_csv(os.path.join(data_folder, 'sales_train.csv'), index=False)
+    test_df.to_csv(os.path.join(data_folder, 'sales_test.csv'), index=False)
+    
+    print("Files 'sales_train.csv' and 'sales_test.csv' have been created.")
+
     
