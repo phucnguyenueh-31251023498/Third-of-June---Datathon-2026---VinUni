@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 def prepare_data(data_folder):
-    # Load sales.csv và tạo file train model bằng data trước 1/1/2023
+    # Load sales.csv và tạo file csv để train model bằng data trước 1/1/2023
     df = pd.read_csv(os.path.join(data_folder, 'sales.csv'), parse_dates=['Date'])
     train_df = df[df['Date'] < '2023-01-01'].copy()
 
