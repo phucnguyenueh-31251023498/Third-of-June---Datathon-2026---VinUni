@@ -52,8 +52,7 @@ except ImportError:
     print("[WARN] pip install shap")
 
 # Paths
-#DATA_DIR = Path("/kaggle/input/competitions/datathon-2026-round-1")
-DATA_DIR   = Path(r'C:\material for learning\Datathon vinuni 2026\Khu data')
+DATA_DIR = Path("/kaggle/input/competitions/datathon-2026-round-1")
 OUTPUT_DIR = Path("outputs")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
