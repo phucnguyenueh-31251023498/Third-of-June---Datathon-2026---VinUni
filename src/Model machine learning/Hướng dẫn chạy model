@@ -1,1 +1,33 @@
-
+Đội thi: ThirdofJune
+Bài làm tập trung vào xây dựng model hybrid kết hợp giữa Ridge Regression và LightGBM/XGBoost để dự báo doanh thu và giá vốn hàng bán hằng ngày cho công ty thương mại điện tử thời trang Việt Nam trong giai đoạn 2023 tới 2024
+Cấu trúc thư mục:
+Để code chạy đúng và nhận diện được các hàm bổ trợ, hai file bắc buộc phải nằm cùng một thư mục như sau:
+📁 Project-Root
+ ├── 📄 Datathon assignment.py  # File thực thi chính (Main script)
+ ├── 📄 features.py             # File chứa các hàm Feature Engineering (Module)
+* Lưu ý: trong file Datathon assignment cần đổi lại path ở dòng thứ 55 với định dạng là thư mục chứa các file data.
+ ├── 📁 data                    # Thư mục chứa các file CSV (sales.csv, reviews.csv,...)
+ VD: chuyển path "DATA_DIR = Path("/kaggle/input/competitions/datathon-2026-round-1")" thành "DATA_DIR = PATH("C:\Users\Admin\Documents\Datathon2026\data")"
+Hướng dẫn cài đặt:
+Tải các thư viện sau:
+- numpy, pandas, matplotlib, scikit-learn, lightgbm, xgboost, optuna, shap
+Hoặc chạy lệnh sau trong terminal:
+pip install numpy pandas matplotlib scikit-learn lightgbm xgboost optuna shap
+Hướng dẫn chạy mô hình:
+- Chạy file chính từ thư mục gốc của dự án
+* Lưu ý: Trong quá trình chạy, file Datathon assignment.py sẽ tự động thực hiện lệnh import features để lấy các hàm xử lý đặc trưng. Do đó, không được đổi tên file features.py
+Quy trình xử lý của model:
+- Feature Engineering: Tích hợp dữ liệu đa nguồn từ đánh giá khách hàng (Reviews), vị trí địa lý (Geography), hiệu suất vận chuyển (Shipment), các ngày lễ đặc trưng, ...
+- Hybrid Modeling: 
+* Ridge Regression: Bắt lấy các xu hướng tuyến tính dài hạn.
+* LightGBM & XGBoost: Xử lý các biến động phi tuyến tính và các ngày lễ (Tết, Double-Days).
+* Ensembling: Kết hợp các mô hình theo trọng số tối ưu dựa trên kết quả Cross-Validation.
+Kết quả validation:
+- Revenue:  
+  - MAE : 722090
+  - RMSE : 993593
+  - R2 : 0.59
+- COGS:
+  - MAE : 695937
+  - RMSE : 939101
+  - R2 : 0.53
